@@ -25,4 +25,5 @@ This page will be used to disseminate course materials.
 ### Course Presentations
 (this will be updated as the course progresses)
 
+[Day 1 - Introduction to Corpus Linguistics and AntConc](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Corpus_Methods_Day_1.pdf?raw=true)
 
