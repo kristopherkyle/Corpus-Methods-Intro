@@ -1,4 +1,4 @@
-# Corpus-Methods-Intro
+# Introduction to Methods in Corpus Linguistics
 
 Welcome to the simple webpage for the course Introduction to Methods in Corpus Linguistics.
 
