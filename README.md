@@ -14,6 +14,7 @@ This page will be used to disseminate course materials.
 
 ### Helpful links and tutorials
 (this will be updated as the course progresses)
+[Laurence Anthony's AntConc Page](https://www.laurenceanthony.net/software/antconc/)
 
 ### Corpora and Other Data
 (this will be updated as the course progresses)
