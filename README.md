@@ -18,6 +18,8 @@ This page will be used to disseminate course materials.
 ### Corpora and Other Data
 (this will be updated as the course progresses)
 
+<a href="https://www1.essex.ac.uk/linguistics/external/clmt/w3c/corpus_ling/content/corpora/list/private/brown/brown.html" target="_blank">Brown Corpus Details (webpage)</a>
+
 [Brown Corpus (Tokenized)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Brown_tokenized.zip?raw=true)
 
 [Lemma, Family, and Stop Lists](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/ant_conc_lists.zip?raw=true)
