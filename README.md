@@ -25,6 +25,7 @@ This page will be used to disseminate course materials.
 [Brown Corpus (Tokenized)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Brown_tokenized.zip?raw=true)
 
 <a href="https://www1.essex.ac.uk/linguistics/external/clmt/w3c/corpus_ling/content/corpora/list/private/brown/brown.html" target="_blank">Brown Corpus Details (webpage)</a>
+[Small COCA Sample]()
 
 [Lemma, Family, and Stop Lists](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/ant_conc_lists.zip?raw=true)
 
