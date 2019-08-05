@@ -34,6 +34,10 @@ This page will be used to disseminate course materials.
 
 ### Python Resources
 
+<a href="https://www.anaconda.com/distribution/#download-section" target="_blank">Anaconda Version of Python 3</a>
+
+<a href="https://spacy.io/usage" target="_blank">Installation instructions for spaCy (after you have installed Python 3)</a>
+
 [Think Python Book (.pdf) - helpful reference for Python functions](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/thinkpython.pdf?raw=true)
 ### Course Presentations
 (this will be updated as the course progresses)
