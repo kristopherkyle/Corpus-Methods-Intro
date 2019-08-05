@@ -32,7 +32,9 @@ This page will be used to disseminate course materials.
 
 [Lemma, Family, and Stop Lists](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/ant_conc_lists.zip?raw=true)
 
+### Python Resources
 
+[Think Python Book (.pdf) - helpful reference for Python functions](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/thinkpython.pdf?raw=true)
 ### Course Presentations
 (this will be updated as the course progresses)
 
