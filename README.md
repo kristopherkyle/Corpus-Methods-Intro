@@ -34,7 +34,10 @@ This page will be used to disseminate course materials.
 
 ### Python Resources
 
-[Kris' Python Tutorials](py_index.md)
+<a href="https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/py_tutorials/Python_Tutorial_1.md.html" target="_blank">Python Tutorial 1</a>
+
+[Kris' Python Tutorial1](py_index.md)
+Python_Tutorial_1.md.html
 
 <a href="https://www.anaconda.com/distribution/#download-section" target="_blank">Anaconda Version of Python 3</a>
 
