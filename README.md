@@ -5,7 +5,7 @@ Welcome to the simple webpage for the course Introduction to Methods in Corpus L
 This page will be used to disseminate course materials.
 
 ### Syllabus
-[Syllabus (updated 2019-08-02)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/_Introduction%20to%20Methods%20in%20Corpus%20Linguistics_2019_08_02.docx?raw=true)
+[Syllabus (updated 2019-08-06)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/_Introduction%20to%20Methods%20in%20Corpus%20Linguistics_2019_08_06.docx?raw=true)
 
 ### Assignment Descriptions 
 (More will be added as the course progresses)
