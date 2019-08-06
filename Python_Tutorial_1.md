@@ -19,10 +19,11 @@ print("Hello, World!")
 
 
 ---
-#### We can run this code at least three ways:
-* Directly in the Python terminal  
+#### We can run this code at least three ways
+* Directly in the Python terminal
 * By saving a script <script_name.py> that includes the command and running it
 * In a Python interpreter (such as spyder)
+
 ---
 
 #### Part I: Value types
@@ -31,6 +32,7 @@ Python has three basic types of **_values_**:
 * strings
 * integers
 * floats
+
 ---
 
 #### Strings
