@@ -1,5 +1,6 @@
+[Back to Tutorial Index](py_index.md)
 
-# Welcome to 680R, Day 5
+# Python Tutorial 3
 
 ### More fun with Python:  
 ### Dictionaries, Tuples, Functions, and Files
