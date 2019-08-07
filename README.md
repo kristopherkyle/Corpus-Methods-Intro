@@ -53,3 +53,6 @@ This page will be used to disseminate course materials.
 
 [Day 3 - Bundles/Clusters/N-grams](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Corpus_Methods_Day_3.pdf?raw=true)
 
+[Day 4 - Collocation ](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Corpus_Methods_Day_4.pdf?raw=true)
+
+[Day 5 - Python Notes (see Python Tutorials 1-3 as well]((https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass1_notes.py?raw=true)
