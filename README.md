@@ -32,6 +32,8 @@ This page will be used to disseminate course materials.
 
 [Lemma, Family, and Stop Lists](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/ant_conc_lists.zip?raw=true)
 
+[Sample Learner Corpus](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/small_sample.zip?raw=true)
+
 ### Python Resources
 
 [Kris' Python Tutorials](py_index.md)
