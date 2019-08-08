@@ -8,3 +8,5 @@
 ### [Tutorial 3: Dictionaries, Tuples, Functions, and Files](Python_Tutorial_3.md)
 
 ### [Tutorial 4: Corpus Loading, Tokenizing, Lemmatizing, and N-grams](Python_Tutorial_4.md)
+
+### [Tutorial 5: Frequency, Range, and File writing](Python_Tutorial_5.md)
