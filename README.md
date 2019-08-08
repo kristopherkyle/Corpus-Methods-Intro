@@ -56,3 +56,8 @@ This page will be used to disseminate course materials.
 [Day 4 - Collocation ](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Corpus_Methods_Day_4.pdf?raw=true)
 
 [Day 5 - Python Notes - see Python Tutorials 1-3 first](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass1_notes.py?raw=true)
+
+[Day 6a - Python Notes - But see Python Tutorial 4 for detailed instructions/explanation](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass2_notes.py?raw=true)
+
+[Day 6b - Python Notes - But see Python Tutorial 4 for detailed instructions/explanation](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass2.1_notes.py?raw=true)
+
