@@ -29,7 +29,7 @@ def load_corpus(dir_name, ending = '.txt', lower = True): #this function takes a
 		else:
 			master_corpus.append(open(filename).read())#open each file, (but don't lower it) and add strings to list
 
-	return master_corpus #output list of strings (i.e., the corpus)
+	return(master_corpus) #output list of strings (i.e., the corpus)
 
 ```
 
@@ -155,7 +155,7 @@ Now that we have a lemma dictionary, we can easily turn a tokenized text into a 
 
 The function **_lemmatize()_** below takes two arguments and returns a list of lists (corpus documents) of lists (lemmas).
 1. **_tokenized_corpus_** is a tokenized corpus (list of lists of lists)
-2. **__lemma__** is a lemma dictionary that consists of {"word" : "lemma"} pairs
+2. **_lemma_** is a lemma dictionary that consists of {"word" : "lemma"} pairs
 
 ```python
 def lemmatize(tokenized_corpus,lemma): #takes a list of lists (a tokenized corpus) and a lemma dictionary as arguments
