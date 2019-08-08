@@ -79,7 +79,7 @@ The **_high_val()_** function has six arguments:
 ```python
 def high_val(stat_dict,hits = 20,hsort = True,output = False,filename = None, sep = "\t"):
 	#first, create sorted list. Presumes that operator has been imported
-	sorted_list = sorted(corp_freq.items(),key=operator.itemgetter(1),reverse = hsort)[:hits]
+	sorted_list = sorted(stat_dict.items(),key=operator.itemgetter(1),reverse = hsort)[:hits]
 
 	if output == False and filename == None: #if we aren't writing a file or returning a list
 		for x in sorted_list: #iterate through the output
@@ -94,7 +94,6 @@ def high_val(stat_dict,hits = 20,hsort = True,output = False,filename = None, se
 
 	if output == True: #if output is true
 		return(sorted_list) #return the sorted list
-
 ```
 Usage examples:
 ```python
