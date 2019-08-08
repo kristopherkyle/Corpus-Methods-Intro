@@ -42,7 +42,7 @@ print(corpus_lower[0]) #print the first document in the corpus
 
 If we do not want all of our corpus characters to be in lower case, we can use "lower = False"
 
-```Python
+```python
 corpus_sample = load_corpus("corpus_documents", lower = False) #load the corpus into memory with the default settings
 print(corpus_sample[0]) #print the first document in the corpus
 ```
@@ -52,7 +52,7 @@ Next, we need to clean and tokenize our corpus so we can start counting words.
 
 For cleaning, we will use the **_.replace()_** method, which allows use to replace any string of characters with another string of characters.
 
-```Python
+```python
 #In this example, we will replace "silly" with "sample"
 text1 = "This is a silly string."
 text2 = text1.replace("silly","sample")
@@ -62,7 +62,7 @@ text2 = text1.replace("silly","sample")
 > This is a sample string.
 ```
 We can also effectively delete characters by replacing them with nothing (using "").
-```Python
+```python
 #In this example, we will replace any periods with nothing (i.e., we will delete any periods)
 text = "This is a sample string."
 clean_text = text.replace(".","")
@@ -84,7 +84,7 @@ The function **_tokenize()_** below will do two types of replacement (deleting s
 
 The function will return a list of lists (corpus documents) of lists (word units).
 
-```Python
+```python
 default_punct_list = [",",".","?","'",'"',"!",":",";","(",")","[","]","''","``","--"] #we can add more items to this if needed
 default_space_list = ["\n","\t","  ","   ","   "]
 
@@ -108,7 +108,7 @@ def tokenize(corpus_list, remove_list = default_punct_list, space_list = default
 
 The example below presumes that you have a variable "corpus_lower" that is a list of strings (i.e., corpus documents)
 
-```Python
+```python
 tokenized_corpus = tokenize(corpus_lower) #tokenize corpus
 print(tokenized_corpus[0]) #print first document
 print(tokenized_corpus[0][0]) #print first word in first document
@@ -125,7 +125,7 @@ In the examples below, we will use a lemma list from [Laurence Anthony's AntConc
 The function **_load_lemma_** takes a single argument and returns a dictionary consisting of {"word" : "lemma"} pairs.
 1. **_lemma_file_** is a string. It should be the name of your lemma list (don't forget place this file in the same folder as your Python script and set your working directory!)
 
-```Python
+```python
 def load_lemma(lemma_file): #this is how we load a lemma_list
 	lemma_dict = {} #empty dictionary for {token : lemma} key : value pairs
 	lemma_list = open(lemma_file).read() #open lemma_list
@@ -160,7 +160,7 @@ The function **_lemmatize()_** below takes two arguments and returns a list of l
 1. **_tokenized_corpus_** is a tokenized corpus (list of lists of lists)
 2. **__lemma__** is a lemma dictionary that consists of {"word" : "lemma"} pairs
 
-```Python
+```python
 def lemmatize(tokenized_corpus,lemma): #takes a list of lists (a tokenized corpus) and a lemma dictionary as arguments
 	master_corpus = [] #holder for lemma corpus
 	for text in tokenized_corpus: #iterate through corpus documents
@@ -190,7 +190,7 @@ The function **_ngrammer()_** below takes two arguments and returns a list of li
 1. **_tokenized_corpus_** is a tokenized (or lemmatized) corpus (list of lists of lists)
 2. **_number_** is the number of items (words) to include in each n-gram
 
-```Python
+```python
 def ngrammer(tokenized_corpus,number):
 	master_ngram_list = [] #list for entire corpus
 
@@ -210,11 +210,11 @@ def ngrammer(tokenized_corpus,number):
 	return(master_ngram_list)
 ```
 
-```Python
+```python
 corpus_bigram = ngrammer(tokenized_corpus,2)
 print(corpus_bigram[0])
 ```
-```Python
+```python
 corpus_trigram = ngrammer(tokenized_corpus,3)
 print(corpus_bigram[0])
 ```
