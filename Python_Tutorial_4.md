@@ -86,7 +86,7 @@ The function will return a list of lists (corpus documents) of lists (word units
 
 ```python
 default_punct_list = [",",".","?","'",'"',"!",":",";","(",")","[","]","''","``","--"] #we can add more items to this if needed
-default_space_list = ["\n","\t","  ","   ","   "]
+default_space_list = ["\n","\t","    ","   ","  "]
 
 def tokenize(corpus_list, remove_list = default_punct_list, space_list = default_space_list, split_token = " "):
 	master_corpus = [] #holder list for entire corpus
