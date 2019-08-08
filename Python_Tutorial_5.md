@@ -65,8 +65,50 @@ Normed range values:
 corp_range_normalized = corpus_frequency(tokenized_corpus,calc = 'range',normed = True)
 print(corp_range["this"])
 ```
+### Printing and/or Writing Simple Sorted Lists
+If we want to print a summary of one of our dictionaries (e.g., the top 20 items in our frequency dictionary) or write sorted list to a file, we can use the **_high_val()_** function, which is quite versatile. In its simplest form, it can be used to print items to the terminal in a format that can be copy/pasted. It can also be used to write a simple spreadsheet file.
 
-### Writing Frequency Values to a File
+The **_high_val()_** function has six arguments:
+1. **_stat_dict_** is a dictionary that consist of {string : number} key : value pairs (e.g., a frequency dictionary)
+2. **_hits_** is the number of items to include (default is top 20 items). If you want to include all items in the corpus, choose a very large number (e.g., 10000000000).
+3. **_hsort_** is a Boolean value. By default, this is True (and the dictionary is sorted with the highest value first)
+4. **_output_** is a Boolean value. By default it is False. If True, the function will return a sorted list
+5. **_filename_** by default is None. If a filename is provided (e.g., results.txt), a list will be written to the working directory.
+6. **_sep_** is a string. By default, this is a tab character. It is only used when lists are written to a file.
+
+```python
+def high_val(stat_dict,hits = 20,hsort = True,output = False,filename = None, sep = "\t"):
+	#first, create sorted list. Presumes that operator has been imported
+	sorted_list = sorted(corp_freq.items(),key=operator.itemgetter(1),reverse = hsort)[:hits]
+
+	if output == False and filename == None: #if we aren't writing a file or returning a list
+		for x in sorted_list: #iterate through the output
+			print(x[0] + "\t" + str(x[1])) #print the sorted list in a nice format
+
+	elif filename is not None: #if a filename was provided
+		outf = open(filename,"w") #create a blank file in the working directory using the filename
+		for x in sorted_list: #iterate through list
+			outf.write(x[0] + sep + str(x[1])+"\n") #write each line to a file using the separator
+		outf.flush() #flush the file buffer
+		outf.close() #close the file
+
+	if output == True: #if output is true
+		return(sorted_list) #return the sorted list
+
+```
+Usage examples:
+```python
+#only print top 20 hits
+high_val(corp_freq)
+
+#create list of top 20 hits
+high_list = high_val(corp_freq, output = True)
+
+#write top 20 hits to a file
+high_val(corp_freq,filename = "freq_results.txt")
+```
+
+### Writing More Complex Frequency Values to a File
 If we want to output our frequency list to a file for later use, we can do so using the **_list_writer()_** function, which takes five arguments.
 1. **_outf_name_** is a string. This will be the name of your output file (e.g., "corpus_results.csv")
 2. **_dict_list_** is a list of dictionaries. If you only have one dictionary, just put it inside a list: [freq_dict]
@@ -74,7 +116,9 @@ If we want to output our frequency list to a file for later use, we can do so us
 4. **_cutoff_** is an integer or a float. If an item's value is lower than the cutoff value, it will not be included in the output. The default cutoff value is 5.
 5. **_sep_** is a string. By default, this is a comma ",". However, if you retain commas in your tokenized lists, you will need to change sep to something else (e.g., "\t").
 
+Note, we will need to import the Python package **operator** for this function to work properly
 ```python
+import operator
 def list_writer(outf_name,dict_list,header_list = ["word","frequency"],cutoff = 5, sep = ","):
 	outf = open(outf_name, "w") #create output file
 
