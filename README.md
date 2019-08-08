@@ -38,6 +38,8 @@ This page will be used to disseminate course materials.
 
 [Kris' Python Tutorials](py_index.md)
 
+[Python Corpus Analysis Scripts](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/corpus_packages.zip?raw=true)
+
 <a href="https://www.anaconda.com/distribution/#download-section" target="_blank">Anaconda Version of Python 3</a>
 
 <a href="https://spacy.io/usage" target="_blank">Installation instructions for spaCy (after you have installed Python 3)</a>
