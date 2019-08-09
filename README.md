@@ -67,5 +67,5 @@ This page will be used to disseminate course materials.
 
 [Day 6b - Python Notes - But see Python Tutorial 4 for detailed instructions/explanation](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass2.1_notes.py?raw=true)
 
-[Day 7 - Python Notes - But see Python Tutorials 5-7 for detailed instructions/explanation](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass3_notes.py?raw=true)
+[Day 7 - Python Notes - But see Python Tutorials 5-8 for detailed instructions/explanation](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/pyclass3_notes.py?raw=true)
 
