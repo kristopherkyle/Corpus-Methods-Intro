@@ -40,7 +40,7 @@ This page will be used to disseminate course materials.
 
 [Kris' Python Tutorials](py_index.md)
 
-[Python Corpus Analysis Scripts](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/corpus_packages.zip?raw=true)
+[Python Corpus Analysis Scripts (updated 2019-8-9, 9:00pm](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/corpus_packages_updated.zip?raw=true)
 
 <a href="https://www.anaconda.com/distribution/#download-section" target="_blank">Anaconda Version of Python 3</a>
 
