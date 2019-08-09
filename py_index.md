@@ -14,3 +14,5 @@
 ### [Tutorial 6: Keyness and Collocation](Python_Tutorial_6.md)
 
 ### [Tutorial 7: Tagging, Parsing, and Writing Tagged Corpora to File](Python_Tutorial_7.md)
+
+### [Tutorial 8: Putting Corpus Functions to Work](Python_Tutorial_8.md)
