@@ -10,3 +10,5 @@
 ### [Tutorial 4: Corpus Loading, Tokenizing, Lemmatizing, and N-grams](Python_Tutorial_4.md)
 
 ### [Tutorial 5: Frequency, Range, and File writing](Python_Tutorial_5.md)
+
+### [Tutorial 6: Keyness and Collocation](Python_Tutorial_6.md)
