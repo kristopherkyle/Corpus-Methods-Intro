@@ -14,6 +14,8 @@ The **_corpus_frequency()_** function takes four arguments and outputs a diction
 4. **_normed_** is a Boolean value (True or False). If True, the frequencies will be normed per million words (for frequency) or per 100 documents (for range). The default value is **False**
 
 ```python
+ignore_list = [""," ", "  ", "   ", "    "] #list of items we want to ignore in our frequency calculations
+
 def corpus_frequency(corpus_list, ignore = ignore_list, calc = 'freq', normed = False): #options for calc are 'freq' or 'range'
 	freq_dict = {} #empty dictionary
 
