@@ -12,3 +12,5 @@
 ### [Tutorial 5: Frequency, Range, and File writing](Python_Tutorial_5.md)
 
 ### [Tutorial 6: Keyness and Collocation](Python_Tutorial_6.md)
+
+### [Tutorial 7: Tagging, Parsing, and Writing Tagged Corpora to File](Python_Tutorial_7.md)
