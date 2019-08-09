@@ -44,6 +44,8 @@ This page will be used to disseminate course materials.
 
 <a href="https://spacy.io/usage" target="_blank">Installation instructions for spaCy (after you have installed Python 3)</a>
 
+[Description of spaCy tags](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/spaCy_tags.xlsx?raw=true)
+
 [Think Python Book (.pdf) - helpful reference for Python functions](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/thinkpython.pdf?raw=true)
 
 ### Course Presentations
