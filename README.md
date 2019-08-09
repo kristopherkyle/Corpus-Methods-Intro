@@ -24,7 +24,9 @@ This page will be used to disseminate course materials.
 
 <a href="http://ota.ox.ac.uk/desc/2553" target="_blank">BNC ("Baby" Version - 4 million word sample)</a>
 
-[Brown Corpus (Tokenized)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Brown_tokenized.zip?raw=true)
+[Brown Corpus (Tokenized, 15 large files)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Brown_tokenized.zip?raw=true)
+
+[Brown Corpus (Tokenized, 500 smaller files)](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/brown_single.zip?raw=true)
 
 <a href="https://www1.essex.ac.uk/linguistics/external/clmt/w3c/corpus_ling/content/corpora/list/private/brown/brown.html" target="_blank">Brown Corpus Details (webpage)</a>
 
