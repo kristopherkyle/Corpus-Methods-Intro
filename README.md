@@ -14,6 +14,10 @@ This page will be used to disseminate course materials.
 
 [Mini Project 2](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Mini%20Project%202.docx?raw=true)
 
+[Mini Project 3](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Mini%20Project%203.docx?raw=true)
+
+[Mini Project 4](https://github.com/kristopherkyle/Corpus-Methods-Intro/blob/master/Course-Materials/Mini%20Project%204.docx?raw=true)
+
 ### Helpful links and tutorials
 (this will be updated as the course progresses)
 
