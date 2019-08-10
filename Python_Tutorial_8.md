@@ -166,8 +166,9 @@ have_VERB       11978
 
 __Collocation Analysis__
 ```python
-upos_freq = ct.corpus_frequency(brown_upos) #raw frequency
-ct.high_val(upos_freq,hits = 10) #use high_val function to see top 10 hits
+run_upos_collocates_mi = ct.collocator(brown_upos,"run_VERB") #note that we have to include the appropriate tag in our search
+ct.high_val(run_upos_collocates_mi,hits = 10) #use high_val function to see top 10 hits
+
 ```
 
 ```
