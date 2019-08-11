@@ -450,7 +450,6 @@ dep_conc(dobj_brown["samples"],hits = 15, seed = 12)
 ```
 The following html will be generated (look for a file in your working directory):
 
-<!doctype html>
 <html><head><style>dep {color:red;}
  dep_head {color:blue;}</style></head><p><word>Stammering </word><word>or </word><word>repetition </word><word>of </word><word>I </word><word>, </word><word>you </word><word>, </word><word>he </word><word>, </word><word>she </word><word>, </word><word>et </word><word>cetera </word><word>may </word><dep_head>signal_dobj_head </dep_head><dep>ambiguity_dobj_dep </dep><word>or </word><word>uncertainty </word><word>. </word><word>
  </word><word>brown_single/cf_cf01.txt </word></p><p><word>We </word><dep_head>spend_dobj_head </dep_head><dep>billions_dobj_dep </dep><word>of </word><word>dollars </word><word>at </word><word>the </word><word>race </word><word>tracks </word><word>, </word><word>and </word><word>more </word><word>billions </word><word>on </word><word>other </word><word>forms </word><word>of </word><word>gambling </word><word>. </word><word>
