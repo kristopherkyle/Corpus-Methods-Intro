@@ -68,58 +68,13 @@ def dep_bg_simple(text,dep): #for teaching purposes
 Below, the **__dep_bg_simple()_** function is used to identify all adjective modifier ("amod") relationships in a string.
 
 ```python
-def dep_bg_simple(text,dep): #for teaching purposes
-	dep_list = [] #list for dependency bigrams
-	doc = nlp(text) #tokenize, tag, and parse text
-
-	for token in doc: #iterate through tokens
-
-		if token.dep_ == dep: #if the dependency relationship matches
-			dependent = token.lemma_ #extract the lemma of the dependent
-			head = token.head.lemma_ #extract the lemma of the head
-
-			dep_bigram = dependent + "_" + head #create a dep_head string
-
-			dep_list.append(dep_bigram) #add dep_head string to list
-
-	return(dep_list)
-```
-```
-> ['expensive_car', 'red_car', 'orange_cone']
-```
-
-### Calculating Association Strengths (Step 1)
-
-In [Tutorial 6](Python_Tutorial_6), we briefly discussed association strength in terms of pointwise mutual information (MI) and t-score (T). While these are commonly used association strength metrics for collocations, other (perhaps superior, see Gries & Ellis, 2015) metrics are also available such as **_faith_** and **_delta p_**. While MI and T are not directional, **_faith_** and **_delta p_** are (see Gries & Ellis, 2015).
-
-**_Faith_** is simply the probability of an outcome occurring given a particular cue (e.g., the probability of having "car" as an outcome given the word "red"). Faith is directional, meaning that a different value is obtained if we calculate the probability of getting the word "red" given the word "car".
-
-**_delta p_** (or, change in probability) is a variant of Faith that adjusts probability of getting the outcome given a cue by subtracting for the probability of getting the outcome (e.g., car) with any other cue.
-
-In order to calculate association strengths, we need to know the size of the corpus (or in this case, the number of particular dependency relationships we have, e.g., the number of "amod" relationships in a corpus), the frequency of the dependent in the dependency relationship (e.g., the frequency of "red" as an adjective modifier), and the frequency of the head in the dependency relationship (e.g., "car" modified by an adjective).
-
-The function **_dep_bigram_corpus()_** takes a corpus directory/folder as input and returns a dictionary of frequency dictionaries needed to calculate association strengths between dependents and heads of particular dependency relationships. These frequency dictionaries, (which can be accessed with the keys "bi_freq", "dep_freq", and "head_freq") can then be used to calculate association strength using the **_bigram_soa()_** function (which is described in the next section).
-
-The **_dep_bigram_corpus()_** function also outputs a list of all sentences in which matching depedency relationships occur (using the key "samples"). Sentences that include more than one matching dependency relationship are included multiple times (one for each matching relationship). Dependents and heads are marked with the relationship (e.g., "dobj") and whether they are dependents ("dep") or heads ("head"). For example, the sentence _The player kicked the ball_ would be represented as _The player **kicked_dobj_head** the **ball_dobj_dep**._
-
-The **_dep_bigram_corpus()_** function takes nine arguments (but only the first two need to be specified for the program to run with the default settings).
-1. **_dirname_** is a string. This should be the name of the folder that your corpus files are in.
-2. **_dep_** is a string. This will indicate the dependency relationship to be examined. Common examples include adjective modifier "amod", direct object "dobj" and noun modifier ("nmod"). A complete list of dependency relationships tagged by spaCy can be found [in the spaCy dependency annotation documentation](https://spacy.io/api/annotation#dependency-parsing).
-3. **_ending_** is a string that indicates the file ending for your corpus files. By default, this is ".txt".
-4. **_lemma_** is a Boolean value. If True, the word form will be a lemma. Otherwise, the word form will be a word. The default value is True.
-5. **_lower_** is a Boolean value. Lemmas are lower case by default in spaCY. If lemma = False and lower = True, the word form will be a word in lower case. The default value is lower = True
-6. **_dep_upos_** is a string. If specified, the function will only return hits if the universal part of speech tag for the dependent matches what is provided. Common examples include nouns "NOUN", and adverbs "ADV". A complete list of universal part of speech tags used by spaCy can be found in the [spacy part of speech annotation documentation](https://spacy.io/api/annotation#pos-tagging). By default, this is ignored.
-7. **_head_upos_** is a string. If specified, the function will only return hits if the universal part of speech tag for the dependent matches what is provided. Common examples include verbs "VERB", and nouns "NOUN". A complete list of universal part of speech tags used by spaCy can be found in the [spacy part of speech annotation documentation](https://spacy.io/api/annotation#pos-tagging). By default, this is ignored.
-8. **_dep_text_** is a string. If specified, the function will only return hits if the dependent token matches what is provided. By default, this is ignored.
-9. **_head_text_** is a string. If specified, the function will only return hits if the head token matches what is provided. By default, this is ignored.
-
-```python
 def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, dep_upos = None, head_upos = None, dep_text = None, head_text = None):
 	filenames = glob.glob(dirname + "/*" + ending) #gather all text names
 
 	bi_freq = {} #holder for dependency bigram frequency
 	dep_freq = {} #holder for depenent frequency
 	head_freq = {} #holder for head frequency
+	range_freq = {}
 	match_sentences = [] #holder for sentences that include matches
 
 	def dicter(item,d): #d is a dictinoary
@@ -138,6 +93,7 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 
 		text = open(filename, errors = "ignore").read() #open each file
 		doc = nlp(text) #tokenize, tag, and parse text using spaCy
+		range_list = [] #for range information
 		#sent_text = "first"
 		for sentence in doc.sents: #iterate through sentences
 			#print(sent_text)
@@ -185,26 +141,30 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 
 					dep_bigram = dependent + "_" + headt #create dependency bigram
 
+					range_list.append(dep_bigram) #add to document-level range list
 					dicter(dep_bigram,bi_freq) #add values to frequency dictionary
 					dicter(dependent,dep_freq) #add values to frequency dictionary
 					dicter(headt,head_freq) #add values to frequency dictionary
 
-		### this section is for creating a list of sentences that include our hits ###
-		for x in dep_headi: #iterate through hits
+			### this section is for creating a list of sentences that include our hits ###
+			for x in dep_headi: #iterate through hits
 
-			temp_sent = sent_text.copy() #because there may be multiple hits in each sentence (but we only want to display one hit at at time), we make a temporary copy of the sentence that we will modify
+				temp_sent = sent_text.copy() #because there may be multiple hits in each sentence (but we only want to display one hit at at time), we make a temporary copy of the sentence that we will modify
 
-			depi = sent_text[x[0]] + "_" + dep+ "_dep" #e.g., word_dobj_dep
-			headi = sent_text[x[1]] + "_" + dep+ "_head" #e.g., word_dobj_head
+				depi = sent_text[x[0]] + "_" + dep+ "_dep" #e.g., word_dobj_dep
+				headi = sent_text[x[1]] + "_" + dep+ "_head" #e.g., word_dobj_head
 
-			temp_sent[x[0]] = depi #change dependent word to depi in temporary sentence
-			temp_sent[x[1]] = headi ##change head word to headi in temporary sentence
+				temp_sent[x[0]] = depi #change dependent word to depi in temporary sentence
+				temp_sent[x[1]] = headi ##change head word to headi in temporary sentence
 
-			temp_sent.append(filename) ## add filename to sent to indicate where example originated
-			match_sentences.append(temp_sent) #add temporary sentence to match_sentences for output
+				temp_sent.append(filename) ## add filename to sent to indicate where example originated
+				match_sentences.append(temp_sent) #add temporary sentence to match_sentences for output
+
+		for x in list(set(range_list)): #create a type list of the dep_bigrams in the text
+			dicter(x,range_freq) #add document counts to the range_freq dictionary
 
 
-	bigram_dict = {"bi_freq":bi_freq,"dep_freq":dep_freq,"head_freq": head_freq,"samples":match_sentences} #create a dictioary of dictionaries
+	bigram_dict = {"bi_freq":bi_freq,"dep_freq":dep_freq,"head_freq": head_freq, "range":range_freq, "samples":match_sentences} #create a dictioary of dictionaries
 	return(bigram_dict) # return dictionary of dictionaries
 
 
@@ -265,18 +225,19 @@ tell    638
 use     496
 find    488
 ```
-The first five direct object samples in the Brown corpus:
+A random sample of five "dobj" examples (here, we will use Python's **_random_** package to get a random sample from our list of examples):
 
 ```python
-for sample in dobj_brown["samples"][:5]:
-	print(" ".join(sample).replace("\n",""))
+import random
+for example in random.sample(dobj_brown["samples"],5):
+	print(" ".join(example).replace("\n",""))
 ```
 ```
-These 1750 cases were carted off in a one - night operation by the O'Banion men , who left_dobj_head in their stead the same number_dobj_dep of barrels filled with water .  brown_single/cf_cf20.txt
-And another one comes to me and he says , ' Look here , there 's a mill in my state employs five thousand people making_dobj_head uniforms_dobj_dep for the Navy .  brown_single/ck_ck03.txt
-This is the first time in 100 years that a candidate for the presidency announced_dobj_head the result_dobj_dep of an election in which he was defeated " , he said .  brown_single/ca_ca37.txt
-" Call_dobj_head this_dobj_dep a cry for help " , Faith Constable said .  brown_single/cl_cl14.txt
-Barbara Borland of Tigard took_dobj_head top senior individual home economics honors_dobj_dep with a demonstration called filbert hats .  brown_single/ca_ca23.txt
+In a series of fairy tales and fantasies , Melies demonstrated that the film is superbly equipped to tell_dobj_head a straightforward story_dobj_dep , with beginning , middle and end , complications , resolutions , climaxes , and conclusions .  brown_single/cf_cf43.txt
+The city sewer maintenance division said efforts will be made Sunday to clear_dobj_head a stoppage_dobj_dep in a sewer connection at Eddy and Elm Streets responsible for dumping raw sewage into the Providence River .  brown_single/ca_ca24.txt
+Always troubled by poor circulation in his feet , he experimented with various combinations of socks and shoes before finally adopting_dobj_head old - style_dobj_dep felt farmer 's boots with his sheepskin flying boots pulled over them .  brown_single/cf_cf05.txt
+Let me give_dobj_head Papa blood_dobj_dep " .  brown_single/cg_cg54.txt
+Early in 1822 he was at Fort Garry offering to bring_dobj_head in pork_dobj_dep , flour , liquor and tobacco .  brown_single/cf_cf17.txt
 ```
 
 ### Calculating Association Strengths (Step 2)
@@ -286,17 +247,20 @@ Now that we have calculated the required frequencies, we can calculate various s
 The **_bigram_soa()_** function takes a dictionary of frequency dictionaries (such as the one created by the **_dep_bigram_corpus()_**) that includes "bi_freq", "dep_freq", and "head_freq" keys and returns a dictionary of {bigram : soa_value} key : value pairs. The **_bigram_soa()_** takes one required argument and two optional arguments.
 1. **_freq_dict_** is a dictionary of frequency dictionaries. The dictionaries must be called using the keys "bi_freq", "dep_freq", and "head_freq". _Note that the association between words in non-dependency bigrams can also be calculated as long as the bigrams in the frequency list are separated with an underscore ("\_"). In this case, "dep_freq" and "head_freq" will point to the same word frequency dictionary._
 2. **_stat_** is a string that indicates the association strength calculation method. Choices include "MI", "T", "faith_dep", "faith_head", "dp_dep", and "dp_head". By default, this value is set to "MI"
-3. **_cutoff_** is an integer that indicates the minimum frequency threshold for the collocation analysis. If the dependency bigram occurs with a frequency below the cutoff, it will be ignored. The default cutoff value is 5.
+3. **_range_cutoff_** is an integer that indicates the minimum range threshold for the collocation analysis. If the dependency bigram occurs in fewer corpus documents than the range_cutoff, it will be ignored. The default range_cutoff value is 5.
+4. **_cutoff_** is an integer that indicates the minimum frequency threshold for the collocation analysis. If the dependency bigram occurs with a frequency below the cutoff, it will be ignored. The default cutoff value is 5.
 
 
 ```python
-def bigram_soa(freq_dict,stat = "MI", cutoff=5):
+def bigram_soa(freq_dict,stat = "MI", range_cutoff = 5, cutoff=5):
 	stat_dict = {}
 	n_bigrams = sum(freq_dict["bi_freq"].values()) #get number of head_dependent in corpus for statistical calculations
 
 	for x in freq_dict["bi_freq"]:
 		observed = freq_dict["bi_freq"][x] #frequency of dependency bigram
 		if observed < cutoff:
+			continue
+		if freq_dict["range"][x] > range_cutoff: #if range value doesn't meet range_cutoff, continue
 			continue
 
 		dep = x.split("_")[0] #split bigram into dependent and head, get dependent
@@ -307,7 +271,7 @@ def bigram_soa(freq_dict,stat = "MI", cutoff=5):
 
 		expected = ((dep_freq * head_freq)/n_bigrams) #expected = (frequency of dependent (as dependent of relationship in entire corpus) * frequency of head (of head of relationship in entire corpus)) / number of relationships in corpus
 
-		#for calculating directional strength of association measures see Gries & Ellis (2015)
+		#for calculating directional strength of association measures see Ellis & Gries (2015)
 		a = observed
 		b = head_freq - observed
 		c = dep_freq - observed
@@ -351,7 +315,6 @@ high_val(dobj_brown_mi,hits = 10)
 ```
 radiation_ionize        12.037952463862721
 B_paragraph     12.037952463862721
-cigarette_smoke 10.523379291032963
 suicide_commit  10.479462174502755
 nose_scratch    10.282371191529167
 calendar_adjust 9.912421581778862
@@ -359,6 +322,7 @@ imagination_capture     9.774918058028927
 nose_blow       9.512490974890227
 English_speak   9.461760172769297
 throat_clear    9.368101065555052
+expense_deduct  9.257069753166308
 ```
 Top 10 most strongly associated direct object - verb combinations (using Faith - dependent as cue):
 ```python
@@ -377,7 +341,7 @@ chapter_see     0.8461538461538461
 suicide_commit  0.8333333333333334
 Income_determine        0.8333333333333334
 fool_make       0.8333333333333334
-mistake_make    0.8
+dive_make       0.75
 ```
 The results above indicate, for example, that there is a probability of 1.0 (i.e., a 100% chance) that given "damn" as a direct object, the verb will be "give" (in the Brown corpus).
 
@@ -392,12 +356,12 @@ high_val(dobj_brown_mi,hits = 10)
 radiation_ionize        1.0
 B_paragraph     1.0
 -PRON-_distract 0.8333333333333334
--PRON-_damn     0.7777777777777778
--PRON-_interest 0.7777777777777778
--PRON-_steer    0.7777777777777778
--PRON-_exhaust  0.75
--PRON-_thank    0.717391304347826
 -PRON-_frighten 0.7142857142857143
 -PRON-_deprive  0.7142857142857143
+-PRON-_wake     0.7
+-PRON-_wrap     0.625
+-PRON-_excuse   0.5555555555555556
+-PRON-_mistake  0.5555555555555556
+-PRON-_interrupt        0.5454545454545454
 ```
 The results above indicate, for example, that there is a probability of 1.0 (i.e., a 100% chance) that given "ionize" as a verb, the direct object will be "radiation" (in the Brown corpus).
