@@ -16,3 +16,5 @@
 ### [Tutorial 7: Tagging, Parsing, and Writing Tagged Corpora to File](Python_Tutorial_7.md)
 
 ### [Tutorial 8: Putting Corpus Functions to Work](Python_Tutorial_8.md)
+
+### [Tutorial 9: Extracting Dependency Relations and Calculating Strength of Association](Python_Tutorial_9.md)
