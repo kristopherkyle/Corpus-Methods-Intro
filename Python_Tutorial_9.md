@@ -100,6 +100,8 @@ In order to calculate association strengths, we need to know the size of the cor
 
 The function **_dep_bigram_corpus()_** takes a corpus directory/folder as input and returns a dictionary of frequency dictionaries needed to calculate association strengths between dependents and heads of particular dependency relationships. These frequency dictionaries, (which can be accessed with the keys "bi_freq", "dep_freq", and "head_freq") can then be used to calculate association strength using the **_bigram_soa()_** function (which is described in the next section).
 
+The **_dep_bigram_corpus()_** function also outputs a list of all sentences in which matching depedency relationships occur (using the key "samples"). Sentences that include more than one matching dependency relationship are included multiple times (one for each matching relationship). Dependents and heads are marked with the relationship (e.g., "dobj") and whether they are dependents ("dep") or heads ("head"). For example, the sentence _The player kicked the ball_ would be represented as _The player **kicked_dobj_head** the **ball_dobj_dep**._
+
 The **_dep_bigram_corpus()_** function takes nine arguments (but only the first two need to be specified for the program to run with the default settings).
 1. **_dirname_** is a string. This should be the name of the folder that your corpus files are in.
 2. **_dep_** is a string. This will indicate the dependency relationship to be examined. Common examples include adjective modifier "amod", direct object "dobj" and noun modifier ("nmod"). A complete list of dependency relationships tagged by spaCy can be found [in the spaCy dependency annotation documentation](https://spacy.io/api/annotation#dependency-parsing).
@@ -118,6 +120,7 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 	bi_freq = {} #holder for dependency bigram frequency
 	dep_freq = {} #holder for depenent frequency
 	head_freq = {} #holder for head frequency
+	match_sentences = [] #holder for sentences that include matches
 
 	def dicter(item,d): #d is a dictinoary
 		if item not in d:
@@ -135,47 +138,75 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 
 		text = open(filename, errors = "ignore").read() #open each file
 		doc = nlp(text) #tokenize, tag, and parse text using spaCy
+		#sent_text = "first"
+		for sentence in doc.sents: #iterate through sentences
+			#print(sent_text)
+			index_start = 0 #for identifying sentence-level indexes later
+			sent_text = [] #holder for sentence
+			dep_headi = [] #list for storing [dep,head] indexes
+			first_token = True #for identifying index of first token
 
-		for token in doc: #iterate through parsed spaCy document
-			if token.dep_ == dep: #if the token's dependency tag matches the one designated
-				dep_tag = token.pos_ #get upos tag for the dependent (only used if dep_tg is specified)
-				head_tag = token.head.pos_ #get upos tag for the head (only used if head_tg is specified)
+			for token in sentence: #iterate through parsed spaCy document
+				if first_token == True:
+					index_start = token.i #if this is the first token, set the index start number
+					first_token = False #then set first token to False
 
-				if lemma == True: #if lemma is true, use lemma form of dependent and head
-					dependent = token.lemma_
-					headt = token.head.lemma_
+				sent_text.append(token.text) #for adding word to sentence
 
-				if lemma == False: #if lemma is false, use the token form
-					if lower == True: #if lower is true, lower it
-						dependent = token.text.lower()
-						head = token.head.text.lower()
-					else: #if lower is false, don't lower
-						dependent = token.text
-						head = token.head.text
+				if token.dep_ == dep: #if the token's dependency tag matches the one designated
+					dep_tg = token.pos_ #get upos tag for the dependent (only used if dep_upos is specified)
+					head_tg = token.head.pos_ #get upos tag for the head (only used if dep_upos is specified)
+
+					if lemma == True: #if lemma is true, use lemma form of dependent and head
+						dependent = token.lemma_
+						headt = token.head.lemma_
+
+					elif lemma == False: #if lemma is false, use the token form
+						if lower == True: #if lower is true, lower it
+							dependent = token.text.lower()
+							headt = token.head.text.lower()
+						else: #if lower is false, don't lower
+							dependent = token.text
+							headt = token.head.text
+
+					if dep_upos != None and dep_upos != dep_tg: #if dependent tag is specified and upos doesn't match, skip item
+						continue
+
+					if head_upos != None and head_upos!= head_tg: #if head tag is specified and upos doesn't match, skip item
+						continue
+
+					if dep_text != None and dep_text != dependent: #if dependent text is specified and text doesn't match, skip item
+						continue
+
+					if head_text != None and head_text != head: #if head text is specified and text doesn't match, skip item
+						continue
+
+					dep_headi.append([token.i-index_start,token.head.i-index_start]) #add sentence-level index numbers for dependent and head
+
+					dep_bigram = dependent + "_" + headt #create dependency bigram
+
+					dicter(dep_bigram,bi_freq) #add values to frequency dictionary
+					dicter(dependent,dep_freq) #add values to frequency dictionary
+					dicter(headt,head_freq) #add values to frequency dictionary
+
+		### this section is for creating a list of sentences that include our hits ###
+		for x in dep_headi: #iterate through hits
+
+			temp_sent = sent_text.copy() #because there may be multiple hits in each sentence (but we only want to display one hit at at time), we make a temporary copy of the sentence that we will modify
+
+			depi = sent_text[x[0]] + "_" + dep+ "_dep" #e.g., word_dobj_dep
+			headi = sent_text[x[1]] + "_" + dep+ "_head" #e.g., word_dobj_head
+
+			temp_sent[x[0]] = depi #change dependent word to depi in temporary sentence
+			temp_sent[x[1]] = headi ##change head word to headi in temporary sentence
+
+			temp_sent.append(filename) ## add filename to sent to indicate where example originated
+			match_sentences.append(temp_sent) #add temporary sentence to match_sentences for output
 
 
-				if dep_tg != None and dep_tag != dep_tg: #if dependent tag is specified and upos doesn't match, skip item
-					continue
-
-				if head_tg != None and head_tag != head_tg: #if head tag is specified and upos doesn't match, skip item
-					continue
-
-				if dep_text != None and dep_text != dependent: #if dependent text is specified and text doesn't match, skip item
-					continue
-
-				if head_text != None and head_text != head: #if head text is specified and text doesn't match, skip item
-					continue
-
-
-				dep_bigram = dependent + "_" + head #create dependency bigram
-
-
-				dicter(dep_bigram,bi_freq) #add values to frequency dictionary
-				dicter(dependent,dep_freq) #add values to frequency dictionary
-				dicter(head,head_freq) #add values to frequency dictionary
-
-	bigram_dict = {"bi_freq":bi_freq,"dep_freq":dep_freq,"head_freq": head_freq} #create a dictioary of dictionaries
+	bigram_dict = {"bi_freq":bi_freq,"dep_freq":dep_freq,"head_freq": head_freq,"samples":match_sentences} #create a dictioary of dictionaries
 	return(bigram_dict) # return dictionary of dictionaries
+
 
 ```
 **Usage examples:**
@@ -219,7 +250,9 @@ hand    190
 this    189
 ```
 Frequency of heads (in this case, verb lemmas that take direct objects in the corpus):
-
+```python
+high_val(dobj_brown["head_freq"])
+```
 ```
 have    2806
 take    1298
@@ -231,6 +264,19 @@ get     661
 tell    638
 use     496
 find    488
+```
+The first five direct object samples in the Brown corpus:
+
+```python
+for sample in dobj_brown["samples"][:5]:
+	print(" ".join(sample).replace("\n",""))
+```
+```
+These 1750 cases were carted off in a one - night operation by the O'Banion men , who left_dobj_head in their stead the same number_dobj_dep of barrels filled with water .  brown_single/cf_cf20.txt
+And another one comes to me and he says , ' Look here , there 's a mill in my state employs five thousand people making_dobj_head uniforms_dobj_dep for the Navy .  brown_single/ck_ck03.txt
+This is the first time in 100 years that a candidate for the presidency announced_dobj_head the result_dobj_dep of an election in which he was defeated " , he said .  brown_single/ca_ca37.txt
+" Call_dobj_head this_dobj_dep a cry for help " , Faith Constable said .  brown_single/cl_cl14.txt
+Barbara Borland of Tigard took_dobj_head top senior individual home economics honors_dobj_dep with a demonstration called filbert hats .  brown_single/ca_ca23.txt
 ```
 
 ### Calculating Association Strengths (Step 2)
