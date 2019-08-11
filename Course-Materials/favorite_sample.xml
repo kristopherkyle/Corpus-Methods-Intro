@@ -1,0 +1,13 @@
+<document>
+	<title>My favorite food</title>
+	<text>
+		<sentence_text id = "1">My favorite food is pepperoni pizza.</sentence_text>
+		<sentence_tokens id = "1">
+			<word lemma = "my", pos = "PRP$">My</word>
+			<word lemma = "favorite", pos = "JJ">favorite</word>
+			<word lemma = "food", pos = "NN">food</word>
+			<word lemma = "be", pos = "VBZ">is</word>
+			<word lemma = "pepperoni", pos = "NN">pepperoni</word>
+			<word lemma = "pizza", pos = "NN">pizza</word>
+	</text>
+</document>
