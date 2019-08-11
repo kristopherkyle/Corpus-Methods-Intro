@@ -74,7 +74,7 @@ When integers are divided, they are converted to floats
 ```
 ---
 
-#### Part 2: Defining Variables
+### Part 2: Defining Variables
 Defining variables is quite easy in python.
 
 They can be strings, integers, floats (and a variety of other structures)
@@ -90,19 +90,11 @@ c = 3.2
 b + c
 ```
 
-
-```python
-b+c
+```
+> 12.2
 ```
 
-
-
-
-    12.2
-
-
-
-#### Important functions
+##### Important functions
 
 Functions are called (used) via the following syntax:  
 function(arguments)
@@ -119,8 +111,9 @@ Commonly used functions include:
 test_var = "This is a string"
 print(test_var)
 ```
-
-    This is a string
+```
+> This is a string
+```
 
 
 
@@ -128,49 +121,32 @@ print(test_var)
 n_char = len(test_var)
 n_char
 ```
-
-
-
-
-    16
-
-
-
-
+```
+> 16
+```
 ```python
 n_char_string = str(n_char)
 n_char_string
 ```
-
-
-
-
-    '16'
-
-
-
+```
+> '16'
+```
 
 ```python
 int(n_char_string)
 ```
-
-
-
-
-    16
-
-
-
-
+```
+> 16
+```
 ```python
 float(n_char_string)
 ```
 
 
 
-
-    16.0
-
+```
+> 16.0
+```
 
 
 #### Important Methods
@@ -190,37 +166,23 @@ Some important **_string_** methods include:
 sample_string = "This is a STRING"
 l_sample_string = sample_string.lower()
 ```
-
-
-
-
-    'this is a string'
-
-
-
-
+```
+> 'this is a string'
+```
 ```python
 l_sample_string.split(" ")
 ```
 
-
-
-
-    ['this', 'is', 'a', 'string']
-
-
-
-
+```
+> ['this', 'is', 'a', 'string']
+```
 ```python
 #but, we can split on any character (note, this deletes that character)
 l_sample_string.split("i")
 ```
-
-
-
-
-    ['th', 's ', 's a str', 'ng']
-
+```
+> ['th', 's ', 's a str', 'ng']
+```
 
 
 ---

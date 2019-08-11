@@ -1,4 +1,5 @@
 # Python Tutorial 4: Corpus Loading, Tokenizing, Lemmatizing, and N-grams
+[Back to Tutorial Index](py_index.md)
 
 In this tutorial, we will work on basic corpus analysis functions. In many cases, I will provide a simple (but workable) example first, followed by a more robust method.
 
@@ -139,9 +140,9 @@ def load_lemma(lemma_file): #this is how we load a lemma_list
 		for token in tokens[1:]: #iterate through every token, starting with the second one
 			if token in lemma_dict:#if the token has already been assigned a lemma - this solved some problems in the antconc list
 				continue
-			else: 
+			else:
 				lemma_dict[token] = lemma #make the key the word, and the lemma the value
-	
+
 	return(lemma_dict)
 ```
 
@@ -199,7 +200,7 @@ def ngrammer(tokenized_corpus,number):
 				continue
 			else:
 				ngram = tokenized[i:i+number] #the ngram will start at the current word, and continue until the nth word
-				ngram_string = " ".join(ngram) #turn list of words into an n-gram string
+				ngram_string = "_".join(ngram) #turn list of words into an n-gram string
 				ngram_list.append(ngram_string) #add string to ngram_list
 
 		master_ngram_list.append(ngram_list) #add ngram_list to master list

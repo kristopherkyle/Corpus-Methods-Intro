@@ -1,4 +1,5 @@
 # Python Tutorial 6: Keyness and Collocation
+[Back to Tutorial Index](py_index.md)
 
 ### Keyness
 In corpus linguistics, a linguistic item (e.g., a word) is "key" when it occurs more frequently in one corpus than another. There are multiple methods of calculating keyness (for a nice overview of these, see Gabrielatos, 2018).
@@ -83,7 +84,7 @@ keyness_dict_or = keyness(target_freq,reference_freq, effect = "odds-ratio")
 
 
 ### Collocation
-Another common analysis in corpus linguistics is to determine the strength of association between words that occur together. Collocation analyses highlight words that occur together with an unexpected frequency. The most common methods of calculating the strength of association between linguistic items are pointwise mutual information (MI) and T-score (T), though there are many other methods that may be more appropriate depending on the analysis (see, e.g., Ellis & Gries, 2015).
+Another common analysis in corpus linguistics is to determine the strength of association between words that occur together. Collocation analyses highlight words that occur together with an unexpected frequency. The most common methods of calculating the strength of association between linguistic items are pointwise mutual information (MI) and T-score (T), though there are many other methods that may be more appropriate depending on the analysis (see, e.g., Gries & Ellis, 2015).
 
 The **_collocator()_** function below calculates a number of collocation statistics. It takes six arguments and returns a dictionary consisting of {word : collocation} key : value pairs. Note that the function uses the **_corpus_frequency()_** function, which is described in Python Tutorial 5.
 1. **_corpus_list_** is a tokenized corpus list (list of lists of lists).

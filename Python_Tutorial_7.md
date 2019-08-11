@@ -1,5 +1,5 @@
 # Python Tutorial 7: Tagging and Parsing Texts with spaCy (and writing tagged corpora)
-
+[Back to Tutorial Index](py_index.md)
 
 The function **_tag()_** takes a string as input (e.g., a text file), and outputs a tokenized and tagged version of the string (as a list of "word_tag" strings). _(Note that the function described in the next section can be used to tag an entire corpus.)_ This function is a wrapper for [spaCy](https://spacy.io/) and presumes that you have [installed spaCy and downloaded the "en_core_web_sm" model](https://spacy.io/usage). Tag takes six arguments.
 1. **_text_** is a string (e.g., a corpus document). SpaCy places a limit on string size (1,000,000 characters), so you will want to split up any particularly large strings (files).

@@ -18,9 +18,9 @@ sample[2]
 
 
 
-
-    'a'
-
+```
+> 'a'
+```
 
 
 ### Dictionaries are unordered, and are organized via "key" and "value" pairs
@@ -34,9 +34,9 @@ sample_d["Windows"]
 
 
 
-
-    'Not Awesome'
-
+```
+> 'Not Awesome'
+```
 
 
 
@@ -44,22 +44,22 @@ sample_d["Windows"]
 for x in sample_d:
     print(x) #prints keys
 ```
-
-    Windows
-    Mac
-    Linux
-
+```
+> Windows
+> Mac
+> Linux
+```
 
 
 ```python
 for x in sample_d:
     print(sample_d[x])
 ```
-
-    Not Awesome
-    Awesome
-    We are not worthy
-
+```
+> Not Awesome
+> Awesome
+> We are not worthy
+```
 
 ### Adding items to dictionaries:
 
@@ -68,9 +68,9 @@ for x in sample_d:
 sample_d["Nintendo"] = "Super Cool"
 print(sample_d)
 ```
-
-    {'Windows': 'Not Awesome', 'Mac': 'Awesome', 'Linux': 'We are not worthy', 'Nintendo': 'Super Cool'}
-
+```
+> {'Windows': 'Not Awesome', 'Mac': 'Awesome', 'Linux': 'We are not worthy', 'Nintendo': 'Super Cool'}
+```
 
 # Uses for dictionaries
 
@@ -104,34 +104,34 @@ sample_l = [1,2,3,4]
 sample_l[1] = "two"
 print(sample_l)
 ```
-
-    [1, 'two', 3, 4]
-
+```
+> [1, 'two', 3, 4]
+```
 
 
 ```python
 print(sample_t[1])
 ```
-
-    2
-
+```
+> 2
+```
 
 
 ```python
 sample_t[1] = "two"
 ```
 
-
-    ---------------------------------------------------------------------------
-
-    TypeError                                 Traceback (most recent call last)
-
-    <ipython-input-40-ec2ffd9bc0a6> in <module>()
-    ----> 1 sample_t[1] = "two"
-
-
-    TypeError: 'tuple' object does not support item assignment
-
+```
+> ---------------------------------------------------------------------------
+>
+> TypeError                                 Traceback (most recent call last)
+>
+> <ipython-input-40-ec2ffd9bc0a6> in <module>()
+> ----> 1 sample_t[1] = "two"
+>
+>
+> TypeError: 'tuple' object does not support item assignment
+```
 
 # Part III: Functions
 ### An important mantra in programming is "Don't Repeat Yourself", or DRY
@@ -160,9 +160,9 @@ n_words = 52
 av_freq = freq_counter/n_words
 print(av_freq)
 ```
-
-    4531.692307692308
-
+```
+> 4531.692307692308
+```
 
 
 ```python
@@ -174,7 +174,7 @@ av_freq2 = freq_counter2/n_words2
 print(av_freq)
 ```
 
-
+```
     ---------------------------------------------------------------------------
 
     ZeroDivisionError                         Traceback (most recent call last)
@@ -187,7 +187,7 @@ print(av_freq)
 
 
     ZeroDivisionError: division by zero
-
+```
 
 # To get around this issue, I write a function called "safe_divide"
 ### The syntax is as follows:
@@ -211,36 +211,36 @@ def safe_divide(numerator,denominator):
 test = safe_divide(1,2)
 print(test)
 ```
-
-    0.5
-
+```
+> 0.5
+```
 
 
 ```python
 test2 = safe_divide(0,0)
 print(test2)
 ```
-
-    0
-
+```
+> 0
+```
 
 
 ```python
 av_freq = safe_divide(freq_counter,n_words)
 print(av_freq)
 ```
-
-    4531.692307692308
-
+```
+> 4531.692307692308
+```
 
 
 ```python
 av_freq2 = safe_divide(freq_counter2,n_words2)
 print(av_freq2)
 ```
-
-    0
-
+```
+> 0
+```
 
 # Part IV: Files
 ### Reading and writing files is an important aspect NLP
@@ -269,29 +269,26 @@ x.close() #this closes the file
 
 ```python
 new_file = open("test_file.txt").read()
-```
 
-
-```python
 new_file
 ```
 
 
 
-
-    'This is an awesome example sentence.\n\nNote that I can use a newline character to insert hard returns.'
-
+```
+> 'This is an awesome example sentence.\n\nNote that I can use a newline character to insert hard returns.'
+```
 
 
 
 ```python
 print(new_file)
 ```
+```
+This is an awesome example sentence.
 
-    This is an awesome example sentence.
-
-    Note that I can use a newline character to insert hard returns.
-
+Note that I can use a newline character to insert hard returns.
+```
 
 # Writing a spreadsheet file
 ### We can easily write a .csv (comma separated values) or .tsv (tab separated values) spreadsheet
@@ -312,9 +309,4 @@ for stuff in sample_d:
 
 sample_spread.flush()
 sample_spread.close()
-```
-
-
-```python
-
 ```

@@ -9,7 +9,7 @@
 
 ### Conditional statements are very powerful
 
-#### The most commonly used conditional statement is the 'if' statement and its children, the 'elif' and 'else' statements 
+#### The most commonly used conditional statement is the 'if' statement and its children, the 'elif' and 'else' statements
 
 
 ```python
@@ -63,9 +63,9 @@ i3 = sample_string[-1] #last letter
 
 print(i1)
 ```
-
-    s
-
+```
+> s
+```
 
 
 ```python
@@ -78,9 +78,9 @@ s5 = sample_string[:2] #start at beginning, grab characters until you get to pos
 
 print(s3)
 ```
-
-    ampl
-
+```
+> ampl
+```
 
 
 ```python
@@ -91,18 +91,18 @@ sample2 = "super"
 sample3 = sample2 + sample1
 print(sample3)
 ```
-
-    superawesome
-
+```
+> superawesome
+```
 
 
 ```python
 sample4 = sample2 + " " + sample1
 print(sample4)
 ```
-
-    super awesome
-
+```
+> super awesome
+```
 
 
 ```python
@@ -113,9 +113,9 @@ else:
     print("nope")
 
 ```
-
-    yay!
-
+```
+> yay!
+```
 
 
 ```python
@@ -125,9 +125,9 @@ if "a" in sample2:
 else:
     print("nope")
 ```
-
-    nope
-
+```
+> nope
+```
 
 # Lists
 #### Lists are awesome
@@ -165,9 +165,9 @@ l1[1:] #just like strings, we can get multiple list items
 
 
 
-
-    ['Mac', 'Linux']
-
+```
+> ['Mac', 'Linux']
+```
 
 
 
@@ -179,9 +179,9 @@ l1
 
 
 
-
-    ['Windows', 'Mac', 'Linux', 'new string']
-
+```
+> ['Windows', 'Mac', 'Linux', 'new string']
+```
 
 
 
@@ -193,9 +193,9 @@ l1
 
 
 
-
-    ['rubbish', 'Mac', 'Linux', 'new string']
-
+```
+> ['rubbish', 'Mac', 'Linux', 'new string']
+```
 
 
 # Loops
@@ -212,16 +212,16 @@ l1
 #Creating a loop:
 sl = ["a", "wonderful", "list", "this", "is"]
 
-for x in sl: #note that 'x' is  local variable and is completely arbitrary 
+for x in sl: #note that 'x' is  local variable and is completely arbitrary
     print(x) #we can call the local variable
 ```
-
-    a
-    wonderful
-    list
-    this
-    is
-
+```
+> a
+> wonderful
+> list
+> this
+> is
+```
 
 
 ```python
@@ -232,10 +232,10 @@ for x in sl:
     else:
         continue #continue tells the loop to go to the next item
 ```
-
-    list
-    this
-
+```
+> list
+> this
+```
 
 # Exercise
 #### 1. Assign the string "This is an awesome sample sentence" to the variable _a_
@@ -252,14 +252,14 @@ b = a.split(" ")
 for blah in b:
     if blah[-1] == "e":
         print(blah)
-    else: 
+    else:
         continue
 ```
-
-    awesome
-    sample
-    sentence
-
+```
+> awesome
+> sample
+> sentence
+```
 
 
 ```python
@@ -269,15 +269,10 @@ c = []
 for blah in b:
     if blah[-1] == "e":
         c.append(blah)
-    else: 
+    else:
         continue
 print(c)
 ```
-
-    ['awesome', 'sample', 'sentence']
-
-
-
-```python
-
+```
+> ['awesome', 'sample', 'sentence']
 ```
