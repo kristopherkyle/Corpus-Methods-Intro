@@ -48,13 +48,13 @@ The function **_dep_bg_simple()_** below is a simple example of how to create a 
 The function simply determines whether the dependency relationship for each word matches the **_dep_** argument. If so, the dependent and the head are joined with an underscore ("\_") and added to a list. The program returns a list of all matches.
 
 ```python
-def dep_bg_simple(text,dep): #for teaching purposes
+def dep_bg_simple(text,dependent): #for teaching purposes
 	dep_list = [] #list for dependency bigrams
 	doc = nlp(text) #tokenize, tag, and parse text
 
 	for token in doc: #iterate through tokens
 
-		if token.dep_ == dep: #if the dependency relationship matches
+		if token.dep_ == dependent: #if the dependency relationship matches
 			dep = token.lemma_ #extract the lemma of the dependent
 			head = token.head.lemma_ #extract the lemma of the head
 
