@@ -10,7 +10,7 @@ This tutorial presumes:
 
 ### Extracting dependency relations (dependency bigrams) with spacy
 
-While collocation analyses are very useful in corpus linguistics, it is often helpful to see the grammatical relations between particular words (and determine the strenght of association between particular relations).
+While collocation analyses are very useful in corpus linguistics, it is often helpful to see the grammatical relations between particular words (and determine the strength of association between particular relations).
 
 For example, it may be useful to see all of the collocates of the word "red". However, it may be more useful in many situations to see all of the nouns that tend to be modified by the adjective "red" more specifically. Of course, this all depends on one's research questions.
 
@@ -41,11 +41,11 @@ a det goal
 goal dobj score
 . punct score
 ```
-If we want to analyze the frequency (or strength of association) of particular pairs of words within a particular dependency relationship (e.g., adjetives and the nouns that they modify), we can do this relatively easily.
+If we want to analyze the frequency (or strength of association) of particular pairs of words within a particular dependency relationship (e.g., adjectives and the nouns that they modify), we can do this relatively easily.
 
 The function **_dep_bg_simple()_** below is a simple example of how to create a list of dependency bigrams from a text. The function takes two arguments, namely a text (in the form of a string), and a dependency relationship (in the form of a string).
 
-The function simply determines whether the dependency relationship for each word matches the **_dep_** argument. If so, the dependent and the head are joined with an underscore ("\_") and added to a list. The program returns a list of all matches.
+The function simply parses a string (the **_text_** argument) and determines whether the dependency relationship for each word matches the **_dependent_** argument. If so, the dependent and the head are joined with an underscore ("\_") and added to a list. The program returns a list of all matches.
 
 ```python
 def dep_bg_simple(text,dependent): #for teaching purposes
@@ -64,7 +64,16 @@ def dep_bg_simple(text,dependent): #for teaching purposes
 
 	return(dep_list)
 ```
+Below, the **_dep_bg_simple()_** function is used to find all _amod_ relationships in the sentence "The expensive red car ran into the orange cones."
 
+```python
+sample2 = "The expensive red car ran into the orange cones."
+sample_amod = dep_bg_simple(sample2,"amod")
+print(sample_amod)
+```
+```
+['expensive_car', 'red_car', 'orange_cone']
+```
 ### Calculating Association Strengths (Step 1)
 
 In [Tutorial 6](Python_Tutorial_6), we briefly discussed association strength in terms of pointwise mutual information (MI) and t-score (T). While these are commonly used association strength metrics for collocations, other (perhaps superior, see Gries & Ellis, 2015) metrics are also available such as **_faith_** and **_delta p_**. While MI and T are not directional, **_faith_** and **_delta p_** are (see Gries & Ellis, 2015).
@@ -138,7 +147,7 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 						dependent = token.lemma_
 						headt = token.head.lemma_
 
-					elif lemma == False: #if lemma is false, use the token form
+					if lemma == False: #if lemma is false, use the token form
 						if lower == True: #if lower is true, lower it
 							dependent = token.text.lower()
 							headt = token.head.text.lower()
@@ -155,7 +164,7 @@ def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, d
 					if dep_text != None and dep_text != dependent: #if dependent text is specified and text doesn't match, skip item
 						continue
 
-					if head_text != None and head_text != head: #if head text is specified and text doesn't match, skip item
+					if head_text != None and head_text != headt: #if head text is specified and text doesn't match, skip item
 						continue
 
 					dep_headi.append([token.i-index_start,token.head.i-index_start]) #add sentence-level index numbers for dependent and head
