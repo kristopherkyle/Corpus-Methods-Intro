@@ -64,8 +64,29 @@ def dep_bg_simple(text,dependent): #for teaching purposes
 
 	return(dep_list)
 ```
-**Example usage**
-Below, the **__dep_bg_simple()_** function is used to identify all adjective modifier ("amod") relationships in a string.
+
+### Calculating Association Strengths (Step 1)
+
+In [Tutorial 6](Python_Tutorial_6), we briefly discussed association strength in terms of pointwise mutual information (MI) and t-score (T). While these are commonly used association strength metrics for collocations, other (perhaps superior, see Gries & Ellis, 2015) metrics are also available such as **_faith_** and **_delta p_**. While MI and T are not directional, **_faith_** and **_delta p_** are (see Gries & Ellis, 2015).
+
+**_Faith_** is simply the probability of an outcome occurring given a particular cue (e.g., the probability of having "car" as an outcome given the word "red"). Faith is directional, meaning that a different value is obtained if we calculate the probability of getting the word "red" given the word "car".
+
+**_delta p_** (or, change in probability) is a variant of Faith that adjusts probability of getting the outcome given a cue by subtracting for the probability of getting the outcome (e.g., car) with any other cue.
+
+In order to calculate association strengths, we need to know the size of the corpus (or in this case, the number of particular dependency relationships we have, e.g., the number of "amod" relationships in a corpus), the frequency of the dependent in the dependency relationship (e.g., the frequency of "red" as an adjective modifier), and the frequency of the head in the dependency relationship (e.g., "car" modified by an adjective).
+
+The function **_dep_bigram_corpus()_** takes a corpus directory/folder as input and returns a dictionary of frequency dictionaries needed to calculate association strengths between dependents and heads of particular dependency relationships. These frequency dictionaries, (which can be accessed with the keys "bi_freq", "dep_freq", and "head_freq") can then be used to calculate association strength using the **_bigram_soa()_** function (which is described in the next section).
+
+The **_dep_bigram_corpus()_** function takes nine arguments (but only the first two need to be specified for the program to run with the default settings).
+1. **_dirname_** is a string. This should be the name of the folder that your corpus files are in.
+2. **_dep_** is a string. This will indicate the dependency relationship to be examined. Common examples include adjective modifier "amod", direct object "dobj" and noun modifier ("nmod"). A complete list of dependency relationships tagged by spaCy can be found [in the spaCy dependency annotation documentation](https://spacy.io/api/annotation#dependency-parsing).
+3. **_ending_** is a string that indicates the file ending for your corpus files. By default, this is ".txt".
+4. **_lemma_** is a Boolean value. If True, the word form will be a lemma. Otherwise, the word form will be a word. The default value is True.
+5. **_lower_** is a Boolean value. Lemmas are lower case by default in spaCY. If lemma = False and lower = True, the word form will be a word in lower case. The default value is lower = True
+6. **_dep_upos_** is a string. If specified, the function will only return hits if the universal part of speech tag for the dependent matches what is provided. Common examples include nouns "NOUN", and adverbs "ADV". A complete list of universal part of speech tags used by spaCy can be found in the [spacy part of speech annotation documentation](https://spacy.io/api/annotation#pos-tagging). By default, this is ignored.
+7. **_head_upos_** is a string. If specified, the function will only return hits if the universal part of speech tag for the dependent matches what is provided. Common examples include verbs "VERB", and nouns "NOUN". A complete list of universal part of speech tags used by spaCy can be found in the [spacy part of speech annotation documentation](https://spacy.io/api/annotation#pos-tagging). By default, this is ignored.
+8. **_dep_text_** is a string. If specified, the function will only return hits if the dependent token matches what is provided. By default, this is ignored.
+9. **_head_text_** is a string. If specified, the function will only return hits if the head token matches what is provided. By default, this is ignored.
 
 ```python
 def dep_bigram_corpus(dirname,dep,ending = ".txt", lemma = True, lower = True, dep_upos = None, head_upos = None, dep_text = None, head_text = None):
